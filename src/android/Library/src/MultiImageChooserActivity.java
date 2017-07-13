@@ -173,8 +173,8 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
         setupHeader();
         updateAcceptButton();
         progress = new ProgressDialog(this);
-        progress.setTitle("Processing Images");
-        progress.setMessage("This may take a few moments");
+        progress.setTitle("加载照片");
+        progress.setMessage("请稍候……");
     }
     
     @Override
@@ -189,8 +189,8 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
         if (maxImages == 0 && isChecked) {
             isChecked = false;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Maximum " + maxImageCount + " Photos");
-            builder.setMessage("You can only select " + maxImageCount + " photos at a time.");
+            builder.setTitle("最多 " + maxImageCount + " 张照片");
+            builder.setMessage("每次最多选择 " + maxImageCount + " 张照片.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) { 
                     dialog.cancel();
@@ -514,7 +514,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
                             try {
                                 bmp = this.tryToGetBitmap(file, options, rotate, false);
                             } catch (OutOfMemoryError e2) {
-                                throw new IOException("Unable to load image into memory.");
+                                throw new IOException("未能加载照片至内存中.");
                             }
                         }
                     } else {
@@ -531,7 +531,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
                                 try {
                                     bmp = this.tryToGetBitmap(file, options, rotate, false);
                                 } catch (OutOfMemoryError e3) {
-                                    throw new IOException("Unable to load image into memory.");
+                                    throw new IOException("未能加载照片至内存中.");
                                 }
                             }
                         }
@@ -590,7 +590,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
                 bmp = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
             }
             if (bmp == null) {
-                throw new IOException("The image file could not be opened.");
+                throw new IOException("照片不能被打开.");
             }
             if (options != null && shouldScale) {
                 float scale = calculateScale(options.outWidth, options.outHeight);
